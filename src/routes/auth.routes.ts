@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { z } from 'zod';
 import { zValidator } from '@hono/zod-validator';
-import { supabaseAdmin } from '../lib/supabase';
+import { supabaseAdmin } from '../lib/supabase.js';
 
 export const authRoutes = new Hono();
 
