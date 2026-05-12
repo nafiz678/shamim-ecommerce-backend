@@ -1,5 +1,5 @@
 import { createMiddleware } from 'hono/factory'
-import { supabaseAuthClient } from '../lib/supabase'
+import { supabaseAuthClient } from '../lib/supabase.js'
 
 export type AuthUser = {
   id: string
