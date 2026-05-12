@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { productQuerySchema } from '../schemas/product.schema'
-import { supabaseAdmin } from '../lib/supabase'
+import { productQuerySchema } from '../schemas/product.schema.js'
+import { supabaseAdmin } from '../lib/supabase.js'
 
 export const productRoutes = new Hono()
 
