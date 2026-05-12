@@ -4,6 +4,10 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
 
+    "rootDir": "src",
+    "outDir": "dist",
+
+    "esModuleInterop": true,
     "types": ["node"],
     "sourceMap": true,
     "declaration": true,
@@ -15,8 +19,8 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
-  "include": ["src", "api"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }
