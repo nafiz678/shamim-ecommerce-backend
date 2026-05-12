@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { createProductSchema } from '../schemas/product.schema'
-import { requireAdmin } from '../middleware/auth'
-import { supabaseAdmin } from '../lib/supabase'
+import { createProductSchema } from '../schemas/product.schema.js'
+import { requireAdmin } from '../middleware/auth.js'
+import { supabaseAdmin } from '../lib/supabase.js'
 
 export const adminRoutes = new Hono()
 
