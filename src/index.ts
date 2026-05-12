@@ -5,7 +5,7 @@ import app from './app'
 serve(
   {
     fetch: app.fetch,
-    port: env.PORT
+    port: env.PORT || 3000
   },
   (info) => {
     console.log(`Server running on http://localhost:${info.port}`)
