@@ -14,10 +14,27 @@ const app = new Hono()
 app.use('*', logger())
 app.use('*', secureHeaders())
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  env.FRONTEND_URL
+]
+
 app.use(
   '*',
   cors({
-    origin: env.FRONTEND_URL,
+    origin: (origin) => {
+      if (!origin) return origin
+
+      if (
+        allowedOrigins.includes(origin) ||
+        origin.endsWith('.vercel.app')
+      ) {
+        return origin
+      }
+
+      return ''
+    },
+
     allowMethods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization', 'x-admin-api-key'],
     credentials: true
