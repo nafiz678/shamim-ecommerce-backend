@@ -2,17 +2,17 @@
   "name": "first_job_task_backend",
   "description": "",
   "version": "1.0.0",
-  "main": "./src/server.ts",
-  "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "build": "tsup src/server.ts --format esm --out-dir dist --clean",
-    "start": "node dist/server.js",
-    "typecheck": "tsc --noEmit"
+  "main": "dist/index.js",
+  "type": "module",
+"scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "vercel-build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
     "@hono/node-server": "^2.0.1",
     "@hono/zod-validator": "^0.7.6",
