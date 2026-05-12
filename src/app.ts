@@ -9,7 +9,7 @@ import { categoryRoutes } from './routes/categories.routes'
 import { cartRoutes } from './routes/cart.routes'
 import { authRoutes } from './routes/auth.routes'
 
-export const app = new Hono()
+const app = new Hono()
 
 app.use('*', logger())
 app.use('*', secureHeaders())
@@ -51,3 +51,5 @@ app.onError((error, c) => {
     500
   )
 })
+
+export default app
