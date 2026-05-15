@@ -16,7 +16,7 @@ productRoutes.get('/', zValidator('query', productQuerySchema), async (c) => {
       category:categories(*)
     `
     )
-    .eq('is_active', true)
+    .eq('is_active', true).limit(9)
 
   if (query.search) {
     request = request.ilike('title', `%${query.search}%`)
@@ -65,6 +65,36 @@ productRoutes.get('/', zValidator('query', productQuerySchema), async (c) => {
   return c.json({
     success: true,
     message: 'Products fetched successfully',
+    data
+  })
+})
+
+productRoutes.get('/landing', async (c) => {
+  const { data, error } = await supabaseAdmin
+    .from('products')
+    .select(
+      `
+      *,
+      category:categories(*)
+    `
+    )
+    .eq('is_active', true)
+    .order('created_at', { ascending: false })
+    .limit(9)
+
+  if (error) {
+    return c.json(
+      {
+        success: false,
+        message: error.message
+      },
+      500
+    )
+  }
+
+  return c.json({
+    success: true,
+    message: 'Landing page products fetched successfully',
     data
   })
 })
