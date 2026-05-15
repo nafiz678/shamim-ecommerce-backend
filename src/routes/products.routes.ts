@@ -13,8 +13,7 @@ productRoutes.get('/', zValidator('query', productQuerySchema), async (c) => {
     .select(
       `
       *,
-      category:categories(*),
-      images:product_images(*)
+      category:categories(*)
     `
     )
     .eq('is_active', true)
