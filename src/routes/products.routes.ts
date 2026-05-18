@@ -99,35 +99,60 @@ productRoutes.get('/landing', async (c) => {
   })
 })
 
-productRoutes.get('/:slug', async (c) => {
-  const slug = c.req.param('slug')
+productRoutes.get("/:slug", async (c) => {
+  const slug = c.req.param("slug");
+
+  if (!slug) {
+    return c.json(
+      {
+        success: false,
+        message: "Slug is required",
+        data: null,
+      },
+      400
+    );
+  }
 
   const { data, error } = await supabaseAdmin
-    .from('products')
+    .from("products")
     .select(
       `
-      *,
-      category:categories(*),
-      images:product_images(*)
-    `
+        id,
+        title,
+        slug,
+        description,
+        price,
+        old_price,
+        images,
+        rating,
+        stock,
+        brand,
+        is_featured,
+        category:categories (
+          id,
+          name,
+          slug,
+          image_url
+        )
+      `
     )
-    .eq('slug', slug)
-    .eq('is_active', true)
-    .single()
+    .eq("slug", slug)
+    .single();
 
   if (error || !data) {
     return c.json(
       {
         success: false,
-        message: 'Product not found'
+        message: "Product not found",
+        data: null,
       },
       404
-    )
+    );
   }
 
   return c.json({
     success: true,
-    message: 'Product fetched successfully',
-    data
-  })
-})
+    message: "Product fetched successfully",
+    data,
+  });
+});
